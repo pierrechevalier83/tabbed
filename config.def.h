@@ -44,7 +44,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_h,      rotate,      { .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_j,      movetab,     { .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_k,      movetab,     { .i = +1 } },
-	{ MODKEY,               XK_Tab,    rotate,      { .i = 0 } },
+	{ MODKEY,               XK_Tab,    rotate,      { .i = +1 } },
+	{ MODKEY|ShiftMask,     XK_Tab,    rotate,      { .i = -1 } },
 
 	{ MODKEY,               XK_1,      move,        { .i = 0 } },
 	{ MODKEY,               XK_2,      move,        { .i = 1 } },
@@ -58,6 +59,7 @@ static Key keys[] = {
 	{ MODKEY,               XK_0,      move,        { .i = 9 } },
 
 	{ MODKEY,               XK_q,      killclient,  { 0 } },
+	{ MODKEY,               XK_w,      killclient,  { 0 } },
 
 	{ MODKEY,               XK_u,      focusurgent, { 0 } },
 	{ MODKEY|ShiftMask,     XK_u,      toggle,      { .v = (void*) &urgentswitch } },
