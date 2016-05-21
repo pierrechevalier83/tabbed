@@ -330,6 +330,12 @@ drawbar(void)
 		return;
 	}
 
+       if (nclients == 1) {
+               XMoveResizeWindow(dpy, clients[0]->win, 0, 0, ww, wh - 0);
+               return;
+       } else if (nclients == 2)
+               XMoveResizeWindow(dpy, clients[1]->win, 0, bh, ww, wh - bh);
+
 	width = ww;
 	cc = ww / tabwidth;
 	if (nclients > cc)
