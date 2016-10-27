@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]        = "Tamsyn:size=20";
+static const char font[]        = "Source Code Pro:size=20";
 static const char* normbgcolor  = "#073642";
 static const char* normfgcolor  = "#eee8d5";
 static const char* selbgcolor   = "#268bd2";
