@@ -40,8 +40,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_Return, spawn,       { 0 } },
 	{ MODKEY,               XK_t,      spawn,       SETPROP("_TABBED_SELECT_TAB") },
 
-	{ MODKEY|ShiftMask,     XK_l,      rotate,      { .i = +1 } },
-	{ MODKEY|ShiftMask,     XK_h,      rotate,      { .i = -1 } },
+	{ MODKEY,               XK_j,      rotate,      { .i = -1 } },
+	{ MODKEY,               XK_k,      rotate,      { .i = +1 } },
 	{ MODKEY|ShiftMask,     XK_j,      movetab,     { .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_k,      movetab,     { .i = +1 } },
 	{ MODKEY,               XK_Tab,    rotate,      { .i = +1 } },
