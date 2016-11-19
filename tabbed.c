@@ -128,7 +128,7 @@ static void setup(void);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
 static int textnw(const char *text, unsigned int len);
-static void toggle(const Arg *arg);
+static void toggle(const Arg* arg);
 static void unmanage(int c);
 static void unmapnotify(const XEvent *e);
 static void updatenumlockmask(void);
@@ -153,6 +153,7 @@ static void (*handler[LASTEvent]) (const XEvent *) = {
 	[PropertyNotify] = propertynotify,
 };
 static int bh, wx, wy, ww, wh;
+static int hidden;
 static unsigned int numlockmask;
 static Bool running = True, nextfocus, doinitspawn = True,
             fillagain = False, closelastclient = False,
@@ -330,12 +331,16 @@ drawbar(void)
 		return;
 	}
 
-       if (nclients == 1) {
-               XMoveResizeWindow(dpy, clients[0]->win, 0, 0, ww, wh - 0);
-               return;
-       } else if (nclients == 2)
-               XMoveResizeWindow(dpy, clients[1]->win, 0, bh, ww, wh - bh);
-
+	if (hidden == 1) {
+		for(c = 0; c < nclients; ++c) {
+			XMoveResizeWindow(dpy, clients[c]->win, 0, 0, ww, wh - 0);
+		}
+		return;
+	} else {
+		for(c = 0; c < nclients; ++c) {
+			XMoveResizeWindow(dpy, clients[c]->win, 0, bh, ww, wh - bh);
+		}
+	}
 	width = ww;
 	cc = ww / tabwidth;
 	if (nclients > cc)
@@ -996,6 +1001,7 @@ setup(void)
 	ww = 800;
 	wh = 600;
 	isfixed = 0;
+    hidden = 0;
 
 	if (geometry) {
 		tx = ty = tw = th = 0;
@@ -1113,7 +1119,13 @@ textnw(const char *text, unsigned int len)
 void
 toggle(const Arg *arg)
 {
-    *(Bool*) arg->v = !*(Bool*) arg->v;
+    int c = 0;
+	if (hidden == 0) {
+	    hidden = 1;
+    } else {
+	    hidden = 0;
+	}
+    drawbar();
 }
 
 void
